@@ -4,8 +4,8 @@
 
 ### Java
 
-[Java反射详解](./Java/Java反射详解.md)
+[Java反射详解](./Articles/Java/Java反射详解.md)
 
-[Java注解详解](Java注解详解.md)
+[Java注解详解](./Articles/Java/Java注解详解.md)
 
-[Java泛型详解](Java泛型详解.md)
+[Java泛型详解](./Articles/Java/Java泛型详解.md)
