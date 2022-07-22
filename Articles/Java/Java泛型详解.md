@@ -346,7 +346,7 @@ public  class ObjectHolder<T> {
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bbd7005aef024cb08539cb97ca8e76bf~tplv-k3u1fbpfcp-watermark.image?)
 
 # 参考资料
-1.《On Java 8》[美] Bruce Eckel
-2.[泛型中 extends 和 super 的区别？](https://itimetraveler.github.io/2016/12/27/%E3%80%90Java%E3%80%91%E6%B3%9B%E5%9E%8B%E4%B8%AD%20extends%20%E5%92%8C%20super%20%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F/)
-3.[java 泛型详解-绝对是对泛型方法讲解最详细的，没有之一](https://blog.csdn.net/s10461/article/details/53941091)
-4.[Java基础篇：反射机制详解](https://blog.csdn.net/a745233700/article/details/82893076)
+1. 《On Java 8》[美] Bruce Eckel
+2. [泛型中 extends 和 super 的区别？](https://itimetraveler.github.io/2016/12/27/%E3%80%90Java%E3%80%91%E6%B3%9B%E5%9E%8B%E4%B8%AD%20extends%20%E5%92%8C%20super%20%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F/)
+3. [java 泛型详解-绝对是对泛型方法讲解最详细的，没有之一](https://blog.csdn.net/s10461/article/details/53941091)
+4. [Java基础篇：反射机制详解](https://blog.csdn.net/a745233700/article/details/82893076)

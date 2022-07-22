@@ -364,6 +364,7 @@ public @interface FunctionalInterface {}
 简单来说，@Functionalllinterface就是标明某个接口为函数接口，而函数接口是指只含有一个抽象方法的接口，注释里还特别提到，如果接口声明一抽象方法来覆盖父类接口的中的抽象方法，那么这不会占用抽象方法的唯一名额。
 
 # 参考资料
-1.《On Java 8》(又名《Java编程思想 5》)\
-2. [深入理解Java注解类型(@Annotation)](https://blog.csdn.net/javazejian/article/details/71860633)\
+1. 《On Java 8》(又名《Java编程思想 5》)
+
+2. [深入理解Java注解类型(@Annotation)](https://blog.csdn.net/javazejian/article/details/71860633)
 3. [@SafeVarargs注解的使用](https://www.cnblogs.com/springmorning/p/10285780.html)

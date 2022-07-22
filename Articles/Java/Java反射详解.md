@@ -299,6 +299,6 @@ public class ReflectionDemo {
 此外，通过反射调用方法，或者设置字段，如果目标元素为私有，必须得先通过setAccessible()将其设置为可访问的，才能做进一步的操作。
 
  # 参考资料
- 1.《深入理解Java虚拟机》，周志明
- 2.[Java基础篇：反射机制详解](https://blog.csdn.net/a745233700/article/details/82893076)
- 3.[面试:说说Java反射中获取Class对象三种方式的区别？](https://cloud.tencent.com/developer/article/1606540)
+1. 《深入理解Java虚拟机》，周志明
+2. [Java基础篇：反射机制详解](https://blog.csdn.net/a745233700/article/details/82893076)
+3. [面试:说说Java反射中获取Class对象三种方式的区别？](https://cloud.tencent.com/developer/article/1606540)
