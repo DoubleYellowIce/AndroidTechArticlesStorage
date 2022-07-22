@@ -134,10 +134,13 @@ public class ReflectionDemo {
 }
 ```
 运行截图如下所示。
+
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c0cbfef203f84bf285598e11fc8246f4~tplv-k3u1fbpfcp-watermark.image?)
+
 需要注意的是，Java中不管类成员也好，构造器也罢，只要没有显式使用权限修进行饰符，那么就是默认包级可见，无法被getConstructors()所获取。
 
 以方式四获取到的私有构造器方法为例，进行实例化。
+
 ```java
 public class ReflectionDemo {
 
@@ -165,6 +168,7 @@ public class ReflectionDemo {
 }
 ```
 运行结果如下所示。
+
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/16ec1340eccf4c6fbad8af7f1a8e90d4~tplv-k3u1fbpfcp-watermark.image?)
 
 除了用构造器方法实例化之外，还可以用class对象进行实例化，但由于该方法已经在Java9就被@Deprecated了，就不再介绍了。

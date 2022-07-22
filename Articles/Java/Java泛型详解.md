@@ -72,8 +72,10 @@ public class ObjectHolder<T> {
 ```java
 ObjectHolder<String> stringHolder=new ObjectHolder<String>("value");
 ```
-上述代码中就是把String类当作一个参数传入ObjectHolder，从而来达到创建一个专门存储String类的容器的目的。\
+上述代码中就是把String类当作一个参数传入ObjectHolder，从而来达到创建一个专门存储String类的容器的目的。
+
 类型参数又分为类型形参和类型实参。
+
 ## 2.1类型形参
 T是类型形参，是英文单词Type的缩写，Java对类型形参并没有严格限制，只要求类型形参是字母，对大小写和个数并没有限制，不过为了代码的可阅读性，类型形参一般都是单个大写字母，且该字母一般为有意义单词的缩写，比如说常见的类型形参中，V为Value的缩写，N为Node的缩写。
 
@@ -111,7 +113,9 @@ public static void main(String[] args) {
 运行上述代码，结果截图如下所示。
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/554aa720fff042c9a5add8efa2351fb1~tplv-k3u1fbpfcp-watermark.image?)
+
 可以看到，代码并没有进行报错，demo1()也成功获取到每个Object存储的值了。
+
 ## 2.4 上下边界
 既然介绍完通配符了，就顺便把上下边界也一并介绍了吧，毕竟上下边界里通配符是必不可少的元素。
 
@@ -163,7 +167,7 @@ public void demo3(ObjectHolder<? super B> objectHolder){
 
 ObjectHolder<? extends B>参数的意思是只要ObjectHolder存储的元素是B类或是B类的子类即可。
 
-ObjectHolder<? super B>参数的是只要ObjectHolder存储的元素是B类或是B类的父类即可。\
+ObjectHolder<? super B>参数的是只要ObjectHolder存储的元素是B类或是B类的父类即可。
 
 修改ObjectHolder中的main方法来进行验证。
 
@@ -182,8 +186,8 @@ public class ObjectHolder<T> {
     			demo.demo2(bHolder);
     			demo.demo2(cHolder);
     			//接收ObjectHolder<? super B> 参数的demo()3方法
-   				 demo.demo3(aHolder);
-   				 demo.demo3(bHolder);
+   				demo.demo3(aHolder);
+   				demo.demo3(bHolder);
     				//demo.demo3(cHolder);该代码会报错，原因是C类不是B类的父类
 }
 }
@@ -288,8 +292,7 @@ public  class ObjectHolder<T> {
 }
 ```
 个人观点认为，Java进行这种限制是有道理的，数组只要求是元素是同一个类型即可，以上述代码为例子，ObjectHolder[]数组，而ObjectHolder< A>却进一步要求必须是存储A类的，我想，这是与数组的意图相违背的。
-\
-\
+
 在这里，我再做一个可能不那么恰当的比喻，这就好比客厅的桌子，只要有位置且主人愿意，就可以在上面放盘子，不管盘子里装的是什么，我想不会有哪个主人愿意作茧自缚，要求只可以放装苹果的盘子。
 # 八.泛型擦除
 稍微对泛型有所了解的读者都知道，泛型只在编译阶段有效，下面我将通过两种方式进行验证。

@@ -176,8 +176,10 @@ public @interface AnnotationDemo{
 }
 ```
 同样地我们利用IDE生成Java文档，截图如下所示。
+
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d96f90ce824946d0b8146128b8e8f93d~tplv-k3u1fbpfcp-watermark.image?)
 我们可以看到第二幅图中@AnnotationDemo注解是有出现在类的文档里的(图中已用红框圈起)。
+
 此外，还有一点需要注意的是，@AnnotationDemo只有对类进行注解才会出现在Java文档里，此点尚存疑，如果有错，欢迎评论区的朋友指正。
 
 ## @Repeatable
