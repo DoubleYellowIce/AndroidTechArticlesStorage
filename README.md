@@ -6,6 +6,10 @@
 
 [贪心算法](./Articles/算法/贪心算法.md)
 
+### 设计模式
+
+[创建型之工厂](./Articles/设计模式/创建型之工厂.md)
+
 ### Java
 
 [Java反射详解](./Articles/Java/Java反射详解.md)
