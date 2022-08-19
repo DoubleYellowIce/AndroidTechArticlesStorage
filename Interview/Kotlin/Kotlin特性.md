@@ -21,7 +21,7 @@
   }
   ```
 
-  生成了CompanyObjectDemo$Companion.class文件，从这命名我们可以知道Companion(也就是companion object，下同)是CompanyObjectDemo的内部类，在[Decompilers online](http://www.javadecompilers.com/)是进行反编译获得[CompanyObjectDemo$Companion.java](../choreFiles/CompanyObjectDemo$Companion.java)
+  生成了CompanyObjectDemo$Companion.class文件，从这命名我们可以知道Companion(也就是companion object，下同)是CompanyObjectDemo的内部类，在[Decompilers online](http://www.javadecompilers.com/)进行反编译获得[CompanyObjectDemo$Companion.java](../choreFiles/CompanyObjectDemo$Companion.java)
 
   ```java
   public static final class Companion
@@ -48,3 +48,6 @@
   
   }
   ```
+
+  上述代码中，类的构造器设置为私有，这样就可以通过companion object::getInstance()控制类的实例化。
+
