@@ -29,8 +29,8 @@
 ### Q&A
 
 - 加载器
-  - [Java](./Interview/Java/加载器.md)
-  - [Android](./Interview/Android/类加载器.md)
+  - [Java](./Q&A/Java/加载器.md)
+  - [Android](./Q&A/Android/类加载器.md)
 
 ### 笔试
 
