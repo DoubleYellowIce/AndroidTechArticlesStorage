@@ -12,6 +12,8 @@
 
 [创建型之工厂](./Articles/设计模式/创建型之工厂.md)
 
+[组合](./Articles/设计模式/组合模式.md)
+
 ### Java
 
 [Java反射详解](./Articles/Java/Java反射详解.md)
