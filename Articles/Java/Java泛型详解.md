@@ -251,9 +251,9 @@ public class ObjectHolder<T> {
 ```java
 public class ObjectHolder<T> {
 
-		public <T> T getT(T t){
+    public <T> T getT(T t){
     	return t;
-		}
+    }
 
 }
 ```
