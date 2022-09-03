@@ -205,7 +205,7 @@ class CustomView:View {
   - 当其返回true时则表示该View会拦截该点击事件。
   - 当其返回false时则表示不进行拦截该点击事件。
 
-  需要注意的是，与onTouchEvent()和dispachTouchEvent()不同的是，
+  需要注意的是，与onTouchEvent()和dispachTouchEvent()不同的是
 
   - interceptTouchEvent()只有在ViewGroup中有实现。
   - 且在ViewGroup中的该实现默认返回false。

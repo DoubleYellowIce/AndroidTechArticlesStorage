@@ -574,7 +574,9 @@ View的draw()方法有以下几个步骤，但源码比较长，这里不再贴�
 5. 绘制ScrollBar
 6. 绘制褪色效果。
 
-需要注意的是，onDraw()方法和dispatchDraw()方法在View里都是个空实现，且FrameLayout()对这两个方法都没有进行复写，而FrameLayout()的直接父类ViewGroup只复写了dispatchDraw()，所以调用的实际上是ViewGroup的dispatchDraw()和View的onDraw()。
+上述步骤看着繁琐，其实核心步骤只有3和4，说人话就是，ViewGroup先绘制自己的UI，再遍历子View来绘制它们的UI。
+
+需要注意的是，onDraw()方法和dispatchDraw()方法在View里都是个空实现，且FrameLayout对这两个方法都没有进行复写，而FrameLayout()的直接父类ViewGroup只复写了dispatchDraw()，所以调用的实际上是ViewGroup的dispatchDraw()和View的onDraw()。
 
 draw()阶段的绘制流程如下所示。
 
