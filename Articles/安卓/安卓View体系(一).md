@@ -205,7 +205,12 @@ class CustomView:View {
   - 当其返回true时则表示该View会拦截该点击事件。
   - 当其返回false时则表示不进行拦截该点击事件。
 
-  需要注意的是，与onTouchEvent()和dispachTouchEvent()不同的是，interceptTouchEvent()只有在ViewGroup中有实现，且该实现默认返回false。
+  需要注意的是，与onTouchEvent()和dispachTouchEvent()不同的是，
+
+  - interceptTouchEvent()只有在ViewGroup中有实现。
+  - 且在ViewGroup中的该实现默认返回false。
+
+  原因也可以大胆猜测下，View作为点击事件中传递链最底层的角色，最终点击事件不出意外的话都能传递到View，不需要额外进行拦截点击事件，而ViewGroup最初的设计理念应该是作为一个从上至下的传递链中的传递者，而不是处理者，因此默认返回false。
 
 这三个方法是点击事件分发的核心，他们三者的关系可以简单的表现为下述的代码。
 ```java
