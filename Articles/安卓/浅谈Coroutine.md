@@ -58,11 +58,11 @@ fun main(){
 
 运行一下，下图所示即为运行结果。
 
-<p><img src="https://raw.githubusercontent.com/DoubleYellowIce/AndroidTechArticlesStorage/master/imgs/image-20220819143315812.png"></img></p>
+<p align="center"><img src="https://raw.githubusercontent.com/DoubleYellowIce/AndroidTechArticlesStorage/master/imgs/image-20220819143315812.png"></img></p>
 
 可以看见线程在functionA()和functionB()之间反复来回横跳。
 
-<p><img src="https://raw.githubusercontent.com/DoubleYellowIce/AndroidTechArticlesStorage/master/imgs/image-20220819143653402.png"></img></p>
+<p align="center"><img src="https://raw.githubusercontent.com/DoubleYellowIce/AndroidTechArticlesStorage/master/imgs/image-20220819143653402.png"></img></p>
 
 
 
