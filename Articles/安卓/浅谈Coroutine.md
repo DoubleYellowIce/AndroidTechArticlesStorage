@@ -2,7 +2,7 @@
 
 Coroutine是什么？这个问题很重要，重要到你即使只理解了这一小节内容就关闭了页面，顺便还骂骂咧咧点了个踩，这篇文章的目的仍达到了，一开始学习Coroutine，我总是急于去学习Coroutine的用法，扣细节，却没有先去理解Coroutine的概念，结果就是始终摸不到Coroutine的门道，这就是典型的见树木而不见森林，如今回过头来理解Coroutine的基础概念后，之前许多无头绪的问题，一下子就豁然开朗了，虽万万不敢说精通Coroutine，但多少也算了解了点Coroutine的皮毛。
 
-Coroutine可以拆分为Co+routine，Co有Cooperation，即协作的意思，routine有计算机例行程序(来自有道词典)的意思，我们可以将其理解为函数，那么把两个单词简单合起来稍加理解就是不同函数进行协作的意思，这听起来会多少有点云里雾里，不知所言了，但这至少给我们一个模糊的概念了。
+Coroutine可以拆分为Co+routine，Co有Cooperation，即协作的意思，routine有计算机例行程序（词意来自有道词典）的意思，我们可以将其理解为函数，那么把两个单词简单合起来稍加理解就是不同函数进行协作的意思。
 
 举个参考资料1中的例子，假设如今有2个函数，functionA()和functionB()，其源码如下所示。
 
@@ -60,11 +60,9 @@ fun main(){
 
 <p align="center"><img src="https://raw.githubusercontent.com/DoubleYellowIce/AndroidTechArticlesStorage/master/imgs/image-20220819143315812.png"></img></p>
 
-可以看见线程在functionA()和functionB()之间反复来回横跳。
+可以看见线程在functionA()和functionB()之间反复横跳。
 
 <p align="center"><img src="https://raw.githubusercontent.com/DoubleYellowIce/AndroidTechArticlesStorage/master/imgs/image-20220819143653402.png"></img></p>
-
-
 
 上述代码不难理解，而这正是Coroutine做的事情，尽管其原理要复杂得多。
 
@@ -94,7 +92,7 @@ fun main(){
 
 CoroutineScope是协程域，所有协程都必须在协程域里运行。
 
-CoroutineScope只有一个构造器参数，CoroutineContext，而CoroutineContext又有Job，Dispatchers，CoroutineName，ExceptionHandler四个构造器参数，需要注意的是，CoroutineName，ExceptionHandler是可选参数。
+CoroutineScope只有一个构造器参数，CoroutineContext，而CoroutineContext又由Job，Dispatchers，CoroutineName，ExceptionHandler组成，需要注意的是，CoroutineName，ExceptionHandler是可选参数。
 
 #### Job
 
@@ -104,8 +102,8 @@ Job总共有六个状态，分别是**New**， **Active**，**Completing**，**C
 
 ```kotlin
 fun main() {
-    val context=Dispatchers.Default+CoroutineName("JobDemo")
-    val job=CoroutineScope(context).launch {
+    val coroutineContext=Dispatchers.Default+CoroutineName("JobDemo")
+    val job=CoroutineScope(coroutineContext).launch {
         //延迟0.1秒
       	delay(100)
     }
@@ -122,7 +120,7 @@ fun main() {
 
 <p align="center"><img src="https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220910144844779.png"></img></p>
 
-Job里有一个cancel()方法，该方法比较重要，字如其名，其作用是取消掉协程。
+Job里有一个**cancel()**方法，该方法比较重要，字如其名，其作用是取消掉协程。
 
 一个很常见的开发场景，假设用户点开了一个页面，页面对应的Activity通过协程发起网络请求，这时用户秒退页面，但网络请求还没执行完成，那么就可以在onDestroy()调用Job的cancel()方法来取消掉协程。
 
@@ -163,15 +161,15 @@ Dispatchers可以指定协程执行任务所在的线程，Dispatchers有三种�
 - Default。应用该Dispatchers的协程适合执行CPU密集型的任务。
 
   ```kotlin
-  GlobalScope.launch(Dispatchers.Main) {
+  GlobalScope.launch(Dispatchers.Default) {
   			someCpuIntensiveWork()
   	 }
   ```
 
-- IO。
+- IO。应用该Dispatchers的协程适合执行IO任务。
 
   ```kotlin
-  GlobalScope.launch(Dispatchers.Main) {
+  GlobalScope.launch(Dispatchers.IO) {
   			fetchDataFromServer()
   	 }
   ```
@@ -198,8 +196,8 @@ fun main() {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default+CoroutineName("ExceptionHandlerDemo")+exceptionHandler
-    CoroutineScope(context).launch (){
+    val coroutineContext = Dispatchers.Default+CoroutineName("ExceptionHandlerDemo")+exceptionHandler
+    CoroutineScope(coroutineContext).launch (){
         throw Exception()
     }
   	//CoroutineScope(context)为顶级协程，线程休眠0.1秒等待协程执行完成。
@@ -224,8 +222,8 @@ fun main() {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default+CoroutineName("ExceptionHandlerDemo")+exceptionHandler
-    CoroutineScope(context).launch (){
+    val coroutineContext = Dispatchers.Default+CoroutineName("ExceptionHandlerDemo")+exceptionHandler
+    CoroutineScope(coroutineContext).launch (){
 				try {
             throw Exception()
         }catch (exception:Exception){
@@ -254,8 +252,8 @@ fun main() {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default+CoroutineName("ExceptionHandlerDemo")+exceptionHandler
-    CoroutineScope(context).launch (){//父协程
+    val coroutineContext = Dispatchers.Default+CoroutineName("ExceptionHandlerDemo")+exceptionHandler
+    CoroutineScope(coroutineContext).launch (){//父协程
 				try {
             launch {//发起子协程
                 throw Exception()
@@ -289,8 +287,8 @@ fun main() {
     val subExceptionHandler= CoroutineExceptionHandler{_,exception->
         println("SubCoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default + CoroutineName("ExceptionHandler")
-    CoroutineScope(context+exceptionHandler).launch() {//顶层协程
+    val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")
+    CoroutineScope(coroutineContext+exceptionHandler).launch() {//顶层协程
         try {
             launch (subExceptionHandler){//第二层协程/子协程
                 launch(subExceptionHandler){//第三层协程/子子协程
@@ -318,8 +316,8 @@ fun main() {
 
 ```kotlin
 fun main() {CoroutineExceptionHandler
-    val context = Dispatchers.Default+CoroutineName("ExceptionHandler")//没有CoroutineExceptionHandler
-    CoroutineScope(context).launch (){//父协程
+    val coroutineContext = Dispatchers.Default+CoroutineName("ExceptionHandler")//没有CoroutineExceptionHandler
+    CoroutineScope(coroutineContext).launch (){//父协程
         try {
             launch {//发起子协程
                 throw Exception()
@@ -342,9 +340,9 @@ fun main() {CoroutineExceptionHandler
 
 ```kotlin
 fun main() {
-    val context = Dispatchers.Default + CoroutineName("ExceptionHandler")//没有CoroutineExceptionHandler
+    val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")//没有CoroutineExceptionHandler
     try {//用try-catch块把顶层协程给包起来
-        CoroutineScope(context).launch() {
+        CoroutineScope(coroutineContext).launch() {
             try {
                 launch {
                     throw Exception()
@@ -365,7 +363,7 @@ fun main() {
 
 原因是协程运行在的线程是在`DefaultDispatcher-worker-3`线程，main线程的try-catch块无法处理`DefaultDispatcher-worker-3`线程的异常，对于这点有疑问的小伙伴可以自行去查阅一下子线程的异常处理方式，这里就不再做演示了。
 
-因此，为每一个顶层协程都设置一个CoroutineExceptionHandler来作为兜底措施是一个不错的编程规范。
+因此，为每一个顶层协程都设置一个CoroutineExceptionHandler来作为兜底措施是一个良好的编程规范。
 
 ##### coroutineScope和supervisorScope
 
@@ -377,8 +375,8 @@ fun main() {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("Top-Level CoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
-    CoroutineScope(context).launch() {
+    val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
+    CoroutineScope(coroutineContext).launch() {
         try {
             coroutineScope {//这里改成supervisorScope也是可以的
                 launch {
@@ -406,8 +404,8 @@ coroutineScope和supervisorScope都可以实现上述的功能，但二者区别
       val exceptionHandler = CoroutineExceptionHandler { _, exception ->
           println("Top-Level CoroutineExceptionHandler got $exception")
       }
-      val context = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
-      CoroutineScope(context).launch() {
+      val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
+      CoroutineScope(coroutineContext).launch() {
           try {
               coroutineScope{
                   launch {
@@ -437,7 +435,7 @@ coroutineScope和supervisorScope都可以实现上述的功能，但二者区别
 
 - supervisorScope内即使有协程抛出了异常，也会运行后续代码。
 
-  将上述代码中的coroutineScope改成supervisorScope后运行一下。
+  将上述代码中的**coroutineScope**改成**supervisorScope**后运行一下。
 
   <p align="center"><img src="https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220913111418387.png"></img></p>
 
@@ -458,7 +456,7 @@ coroutineScope和supervisorScope都可以实现上述的功能，但二者区别
 
 #### launch
 
-launch适用于`fire and forget`的情况，说人话就是，这种协程发起方式适合执行不需要回调的任务，前面的例子都是用launch，再加上比较简单，这里就一笔带过了。
+launch适用于`fire and forget`的情况，说人话就是，这种协程发起方式适合执行不需要回调的任务，前面的例子都是用launch，再加上launch比较简单，这里就一笔带过了。
 
 #### async
 
@@ -469,13 +467,13 @@ fun main() {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("Top-Level CoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
-    CoroutineScope(context).launch() {
+    val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
+    CoroutineScope(coroutineContext).launch() {
         try {
             val res=async { 
-                getDataFromNetWork()
+                getDataFromNetWork()//模拟获取网络数据
             }
-            parseData(res.await())  
+            parseData(res.await())  //模拟parse获取到的网络数据
         } catch (exception: Exception) {
             println("Caught $exception in try-catch block")
         }
@@ -499,8 +497,8 @@ fun main() {
     val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         println("Top-Level CoroutineExceptionHandler got $exception")
     }
-    val context = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
-    CoroutineScope(context).launch{
+    val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
+    CoroutineScope(coroutineContext).launch{
         try {
             val res=async {
                 println("Exception is about to throw")
@@ -535,8 +533,8 @@ fun main() {
         val exceptionHandler = CoroutineExceptionHandler { _, exception ->
             println("Top-Level CoroutineExceptionHandler got $exception")
         }
-        val context = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
-        CoroutineScope(context).launch{
+        val coroutineContext = Dispatchers.Default + CoroutineName("ExceptionHandler")+exceptionHandler
+        CoroutineScope(coroutineContext).launch{
             try {
                 val res=GlobalScope.async {//发起顶层协程
                     println("Exception is about to throw")
@@ -556,8 +554,6 @@ fun main() {
 
     <p align="center"><img src="https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220913162755543.png"></img></p>
 
-    原因其实也和协程的异常传递机制有关，不妨回想一下前文是如何处理非顶层协程的异常的。
-
   - 协程在coroutineScope或supervisorScope内发起的。
 
     这点可查看前面第三部分关于coroutineScope和supervisorScope的介绍。
@@ -571,9 +567,11 @@ fun main() {
 - 如何理解协程这一概念。
 - 如何进行异常处理。
 
-相比于上面这两点，协程的其他知识点要其实要容易理解得多，本文并没有面面俱到，很多协程的知识点并没有讲到，如`suspend函数`，`runBlocking`,`GlobalScope`，`withContext`，但相信各位读者天资聪颖，一定能通过各种途径学习到。
+相比于上面这两点，协程的其他知识点要其实要容易理解得多，本文并没有面面俱到，很多协程的知识点并没有讲到，如`suspend函数`，`runBlocking`，`GlobalScope`，`withContext`，但相信各位读者一定能通过其它各种途径学习到。
 
-希望能对你有帮助，peace。
+希望能对你有帮助，有错欢迎留言。
+
+peace。
 
 ### 参考资料
 
