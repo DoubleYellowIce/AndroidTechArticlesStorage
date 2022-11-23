@@ -1,4 +1,4 @@
-by可以简单理解为provided by，该字段/类由什么提供，有两个方面的应用，一个是字段，一个是类。
+by可以简单理解为provided by，该字段/方法由什么提供，有两个应用，一个是字段，一个是类。
 
 ### 字段
 
@@ -36,7 +36,7 @@ fun main() {
 
 运行一下。
 
-![image-20221121111002329](https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20221121111002329.png)
+<p align="center"><img align=" center" src="https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20221121111002329.png"></img ></p>
 
 可以看到getValue()方法被访问了。
 
@@ -49,7 +49,7 @@ fun main() {
 }
 ```
 
-![image-20221121111053826](https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20221121111053826.png)
+<p align="center"><img align=" center" src="https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20221121111053826.png"></img ></p>
 
 可以看到setValue()方法被访问了。
 
@@ -127,7 +127,7 @@ class Garlands(private val tree: ChristmasTree) : ChristmasTree {
 }
 ```
 
-代码1处就是子类需要复写父类的方法，而2处只是简单调用了父类的方法，在较复杂的类中，像2处的代码只多不少，这会造成较多的繁琐代码，下面再来看看用关键字by怎么实现同样的效果。
+代码1处子类在父类的方法的基础上增添了功能，而2处只是简单调用了父类的方法，在较复杂的类中，像2处的代码只多不少，这会造成较多的繁琐代码，下面再来看看用关键字by怎么实现同样的效果。
 
 ```kotlin
 class Garlands(private val tree: ChristmasTree) : ChristmasTree by tree {
@@ -151,7 +151,7 @@ fun main() {
 
 运行一下。
 
-![image-20221123113334237](https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20221123113334237.png)
+<p align="center"><img align=" center" src="https://private-pirture-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20221123113334237.png"></img ></p>
 
 反编译Garlands.class文件获取[Garlands.java](./Garlands.java)文件。
 
